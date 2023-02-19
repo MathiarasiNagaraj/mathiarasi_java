@@ -1,0 +1,27 @@
+package Exercise;
+import java.util.*;
+public class TriangularDisplay {
+public static void main(String[] args) {
+	int arr[][]=new int[][]
+			{
+		{1},
+		{
+			2,3
+		},
+		{4,5,6},
+		{7,8,9,10}
+			};
+	
+	for(int i=0;i<4;i++)
+	{
+		for(int j=0;j<4;j++)
+		{
+			if(i>=j)
+			System.out.print(arr[i][j]);
+			System.out.print('\t');
+		}
+		System.out.println();
+	}
+	
+}
+}
