@@ -3,14 +3,19 @@ import java.util.*;
 public class DaysInMonth {
 public static void main(String[] args) {
 String month;
-System.out.println("Enter Month name");
+int year;
 Scanner sc=new Scanner(System.in);
+System.out.println("Enter Month name :");
 month=sc.nextLine();
+
+System.out.println("Enter year :");
+year=sc.nextInt();
+
 month=month.toLowerCase();
-findDays(month);
+findDays(month,year);
 
 }
-public static void findDays(String Month)
+public static void findDays(String Month,int year)
 {
 	switch(Month)
 	{
@@ -18,8 +23,14 @@ public static void findDays(String Month)
 		System.out.println("Total days in "+Month+" is 31");
 		break;
 	case "february":
-		System.out.println("Total days in "+Month+" is 28");
+	{
+		if(isLeapYear(year))
+		System.out.println("Total days in "+Month+" is 29");
+		else
+			System.out.println("Total days in "+Month+" is 28");
+		
 		break;
+	}
 	case "march":
 		System.out.println("Total days in "+Month+" is 31");
 		break;
@@ -40,7 +51,7 @@ public static void findDays(String Month)
 		break;
 	case "september":
 		System.out.println("Total days in "+Month+" is 30");
-		break;
+		break;a
 	case "october":
 		System.out.println("Total days in "+Month+" is 31");
 		break;
@@ -51,5 +62,24 @@ public static void findDays(String Month)
 		System.out.println("Total days in "+Month+" is 31");
 		break;
 	}	
+}
+public  static boolean isLeapYear(int year)
+{
+	if(year%4==0)
+	{
+		if(year%100==0)
+		{
+			if(year%400==0)
+				return true;
+			else 
+				return false;
+		}
+		else
+			return true;
+	}
+	else
+		return false;
+		
+		
 }
 }
