@@ -14,7 +14,7 @@ public static void main(String[] args) {
 	
 	
 	System.out.println("default value for byte = "+b+'\n'+"default value for short = "+s+'\n'+"default value for int = "+i+'\n'+
-			"default value for long = "+l);
+			"default value for long = "+l+"l");
 	System.out.println('\n'+"******** Default values for CHARACTER  ********"+'\n');
 	
 	System.out.println("default value for character = "+c);
@@ -24,9 +24,9 @@ public static void main(String[] args) {
 	
 	System.out.println('\n'+"******** Default values for DECIMAL  ********"+'\n');
 
-	System.out.println("Default value for float = "+f);
+	System.out.println("Default value for float = "+f+"f");
 	
-	System.out.println("Default value for double = "+d);
+	System.out.println("Default value for double = "+d+"d");
 
 }
 }
