@@ -11,7 +11,7 @@ class FixedStack implements Stack{
 	
 int arr[];
 int top;
-int size=50;
+int size=10;
 FixedStack()
 {
 	arr=new int[size];
@@ -195,7 +195,7 @@ class DynamicStack implements Stack{
 	{
 		if(top==arr.length-1)
 			{
-				arr=Arrays.copyOf(arr, (arr.length/2));
+				arr=Arrays.copyOf(arr, arr.length+(arr.length/2));
 			}
 		top++;
 		arr[top]=data;
