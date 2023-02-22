@@ -3,7 +3,7 @@ import java.util.*;
 public class EX14_Student {
 	String name;
 	String rollNo;
-	int sub1,sub2,sub3;
+	int subject_one,subject_two,subject_three;
 	
 	EX14_Student(String name,String rollNo)
 	{
@@ -11,35 +11,35 @@ public class EX14_Student {
 		this.rollNo=rollNo;
 	}
 public static void main(String[] args) {
-	String n,roll;
-	int s1,s2,s3;
+	String name,roll;
+	int subject1,subject2,subject3;
 	Scanner sc=new Scanner(System.in);
 	System.out.println("Enter student name : ");
-	n=sc.nextLine();
+	name=sc.nextLine();
 	System.out.println("Enter student roll Number : ");
 	roll=sc.nextLine();
 	System.out.println("Enter 3 subject marks : ");
-	s1=sc.nextInt();
+	subject1=sc.nextInt();
 	
-	s2=sc.nextInt();
-	s3=sc.nextInt();
-	if(s1<0||s2<0||s3<0)
+	subject2=sc.nextInt();
+	subject3=sc.nextInt();
+	if(subject1<0||subject2<0||subject3<0)
 		System.out.println("Enter a valid mark");
-	Results r1=new Results(n,roll,s1,s2,s3);
-	System.out.println(r1.calculateTotal());
+	Results resultObject=new Results(name,roll,subject1,subject2,subject3);
+	System.out.println(resultObject.calculateTotal());
 	
 	
 	
 }
 }
 class Exam extends EX14_Student{
-	int sub1,sub2,sub3;
-	Exam(String s,String rollNo,int s1,int s2,int s3)
+	int subject1,subject2,subject3;
+	Exam(String s,String rollNo,int subject1,int subject2,int subject3)
 	{
 		super(s,rollNo)	;
-		sub1=s1;
-		sub2=s2;
-		sub3=s3;
+		this.subject1=subject1;
+		this.subject2=subject2;
+		this.subject3=subject3;
 		
 	}
 	
@@ -47,13 +47,13 @@ class Exam extends EX14_Student{
 class Results extends Exam
 {
 	
-	Results(String s,String rollNo,int sub1,int sub2,int sub3)
+	Results(String name,String rollNo,int subject1,int subject2,int subject3)
 	{
 	
-		super( s, rollNo,sub1,sub2,sub3);
+		super( name, rollNo,subject1,subject2,subject3);
 	}
 	int calculateTotal()
 	{
-		return super.sub1+super.sub2+super.sub3;
+		return super.subject1+super.subject2+super.subject3;
 	}
 }
