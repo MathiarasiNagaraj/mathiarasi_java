@@ -1,13 +1,13 @@
 package Exercise_3;
 import java.util.*;
-abstract class Stack{
+Interface Stack{
 	abstract void push(int i);
 	abstract int pop();
 	abstract int peek();
 	abstract void display();
 	abstract void doMethods();
 }
-class FixedStack extends Stack{
+class FixedStack implements Stack{
 	
 int arr[];
 int top;
@@ -119,29 +119,31 @@ void display()
 	}
 }
 }
-class DynamicStack extends Stack{
+class DynamicStack implements Stack{
 	
 	int top=-1;
 	int size=50;
-	ArrayList<Integer> arr ; 
+        int arr[];
 	DynamicStack()
 	{
-		arr=new ArrayList<Integer>(size);
+		arr=new arr[size];
 		top=-1;
 	}
+	
 	void doMethods()
 	{
 		System.out.println("Dynamic Stack :");
 		System.out.println("1.push\n2.pop\n3.isEmpty\n4.size\n5.display");
 		Scanner sc=new Scanner(System.in);
-		int n;
+		int number;
 		do {
 		System.out.println("Enter respective number for methods or 0 to stop ");
-		 n=sc.nextInt();
+		 number=sc.nextInt();
 		switch(n)
 		{
 		case 1:
 		{
+			
 			System.out.println("Enter value to push :");
 			int val=sc.nextInt();
 			push(val);
@@ -183,7 +185,7 @@ class DynamicStack extends Stack{
 	{
 		if(!isEmpty())
 		{
-		int val=arr.get(top--);
+		int val=arr[top--];
 		return val;
 		}
 		System.out.println("Stack is Empty");
@@ -191,8 +193,12 @@ class DynamicStack extends Stack{
 	}
 	void push(int data)
 	{
+		if(top==arr.length-1)
+			{
+				arr=Arrays.copyOf(arr, (arr.length/2));
+			}
 		top++;
-		arr.add(data);
+		arr[top]=data;
 		//System.out.println(arr+" "+top);
 		
 	}
@@ -203,19 +209,19 @@ class DynamicStack extends Stack{
 	
 	int size()
 	{
-		return arr.size();
+		return top;
 	}
 	int peek()
 	{
 		
-		return arr.get(top);
+		return arr[top];
 	}
 	void display()
 	{
 		System.out.println("Displaying Stack elements :");
-		for(int i=0;i<arr.size();i++)
+		for(int i=0;i<top;i++)
 		{
-			System.out.println(arr.get(i)+" ");
+			System.out.println(arr[top]+" ");
 		}
 	}
 }
