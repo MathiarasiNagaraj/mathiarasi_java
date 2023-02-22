@@ -1,32 +1,32 @@
 package Exercise;
 
 public class DefaultValues {
-	static byte b;
-	static short s;
-	static int i;
-	static long l;
-	static char c;
-	static float f;
-	static boolean bl;
-	static double d;
+	static byte byteDefaulteValue;
+	static short shortDefaulteValue;
+	static int intDefaulteValue;
+	static long longDefaulteValue;
+	static char characterDefaulteValue;
+	static float floatDefaulteValue;
+	static boolean booleanDefaulteValue;
+	static double doubleDefaulteValue;
 public static void main(String[] args) {
 	System.out.println("****** Default values for INTEGER *******"+'\n');
 	
 	
-	System.out.println("default value for byte = "+b+'\n'+"default value for short = "+s+'\n'+"default value for int = "+i+'\n'+
-			"default value for long = "+l+"l");
+	System.out.println("default value for byte = "+byteDefaulteValue+'\n'+"default value for short = "+shortDefaulteValue+'\n'+"default value for int = "+intDefaulteValue+'\n'+
+			"default value for long = "+longDefaulteValue+"l");
 	System.out.println('\n'+"******** Default values for CHARACTER  ********"+'\n');
 	
-	System.out.println("default value for character = "+c);
+	System.out.println("default value for character = "+characterDefaulteValue);
 	System.out.println('\n'+"******* Default values for BOOLEAN ********"+'\n');
 	
-	System.out.println("Default value for boolean = "+bl);
+	System.out.println("Default value for boolean = "+booleanDefaulteValue);
 	
 	System.out.println('\n'+"******** Default values for DECIMAL  ********"+'\n');
 
-	System.out.println("Default value for float = "+f+"f");
+	System.out.println("Default value for float = "+floatDefaulteValue+"f");
 	
-	System.out.println("Default value for double = "+d+"d");
+	System.out.println("Default value for double = "+doubleDefaulteValue+"d");
 
 }
 }
