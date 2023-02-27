@@ -15,8 +15,6 @@ public class EX3_Inventory {
 
 			object.produce();
 
-		});
-		es.execute(() -> {
 			Thread.currentThread().setName("Consumer");
 
 			object.consume();
