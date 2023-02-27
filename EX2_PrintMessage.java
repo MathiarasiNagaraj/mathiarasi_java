@@ -17,23 +17,10 @@ ExecutorService es=Executors.newFixedThreadPool(3);
 		printMessage("1st thread");
 
 		
-	});
-es.execute(()->{
-	try {
-		Thread.sleep(500);
-	} catch (InterruptedException e) {
-		e.printStackTrace();
-	}
+	
 	printMessage("2nd thread");
 
 		
-	});
-es.execute(()->{
-	try {
-		Thread.sleep(500);
-	} catch (InterruptedException e) {
-		e.printStackTrace();
-	}	
 
 	printMessage("3rd thread");
 
