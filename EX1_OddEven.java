@@ -10,8 +10,7 @@ public class EX1_OddEven {
 			printEven();
 
 			
-		});
-		es.execute(()->{
+		
 			Thread.currentThread().setName("ODD Number");
 			
 			printOdd();
