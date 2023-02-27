@@ -25,7 +25,7 @@ public static void main(String[] args) {
 			e.printStackTrace();
 		}
 	
-			clock.displayTime();
+			
 		});
 	}
 	
