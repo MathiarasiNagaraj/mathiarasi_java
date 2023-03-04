@@ -1,128 +1,229 @@
+
 package Pattern;
-public class CommandDemo {
+import java.util.*;
+
+
+public class CommandPattern {
 	public static void main(String[] args) {
-		UniversalRemote genie=new UniversalRemote();
+		ControlScreen screen=new ControlScreen();
+
+		Apple  apple = new Apple();
+		Sugar sugar=new Sugar();
+		Milk milk=new Milk();
+		Orange orange = new Orange();
+		Grapes grape = new Grapes();
+		Lemon lemon = new Lemon();
+		RoseEssence rose=new RoseEssence();
+		Chocolate chocolate=new Chocolate();
+        Scanner scan=new Scanner(System.in);
 		
-		Tv tv=new Tv();
-		SetTopBox sbox=new SetTopBox();
-		SoundSystem ss=new SoundSystem();
-		VGame vgame=new VGame();
-		
-		Command newscommand=new NewsChannelCommand(tv, sbox, ss, vgame);
-		Command serialcommand=new SerialChannelCommand(tv, sbox, ss, vgame);
-		Command ttgamecommand=new TTGameCommand(tv, sbox, ss, vgame);
-		
-		genie.assignCommand(1, ttgamecommand);
-		genie.assignCommand(2, newscommand);
-		genie.assignCommand(3, serialcommand);
-		
-		genie.executeCommand(1);
+        AppleJuice Applejuice=new AppleJuice(apple,milk,sugar);
+        OrangeJuice Orangejuice=new OrangeJuice(orange,sugar);
+        GrapeJuice Grapejuice=new GrapeJuice(grape,milk,sugar);
+        LemonJuice lemonjuice=new LemonJuice(lemon,sugar);
+        RoseMilk    Rosemilk=new RoseMilk(rose,milk,sugar);
+        ChocolateMilk Chocolatemilk=new ChocolateMilk(chocolate,milk,sugar);
+        
+        screen.assignCommand(1, Applejuice);
+        screen.assignCommand(2, Orangejuice);
+        screen.assignCommand(3, Grapejuice);
+        screen.assignCommand(4, lemonjuice);
+        screen.assignCommand(5, Rosemilk);
+        screen.assignCommand(6, Chocolatemilk);
+     
+		System.out.println("1.Apple juice\n2.Orange juice\n3.Grapes juice\n4.lemon juice\n5.RoseMilk\n6.Chocolate Milk");
+		System.out.println("Enter your choice :");
+		int choice = scan.nextInt();
+		screen.executeCommand(choice);
+		scan.close();
 	}
 }
-class UniversalRemote{
-	Command c[]=new Command[5];
-	public UniversalRemote() {
-		for(int i=0;i<5;i++) {
-			c[i]=new DummyCommand();
-		}
-	}
+
+class ControlScreen {
+	private static final Map<Integer, Command> commands = new HashMap<>();
+
 	
+
 	public void executeCommand(int slot) {
-		c[slot].execute();
+		commands.get(slot).execute();
 	}
-	
-	public void assignCommand(int slot,Command command) {
-		c[slot]=command;
+
+	public void assignCommand(int slot, Command command) {
+		commands.put(slot, command);
 	}
 }
-abstract class Command{
-	Tv tv;SetTopBox sbox;SoundSystem ss;VGame vgame;
+
+abstract class Command {
+
+
 	public Command() {
-		// TODO Auto-generated constructor stub
+		
 	}
+
 	
-	public Command(Tv tv, SetTopBox sbox, SoundSystem ss, VGame vgame) {
-		this.tv = tv;
-		this.sbox = sbox;
-		this.ss = ss;
-		this.vgame = vgame;
-	}
 	public abstract void execute();
 }
-class DummyCommand extends Command{
+
+
+
+class AppleJuice extends Command {
+	Apple apple;Milk milk;Sugar sugar;
+	public AppleJuice(Apple apple,Milk milk,Sugar sugar) {
+	  this.apple=apple;
+	  this.milk=milk;
+	  this.sugar=sugar;
+	}
+
 	@Override
 	public void execute() {
-		System.out.println("i am a dummy slot.....yet to be assigned a process...");
+		
+		apple.addApple();
+		milk.addOneCupMilk();
+		sugar.addSugar(4);
+		System.out.println("Enjoy your apple juice");
+		
 	}
 }
-class NewsChannelCommand extends Command{
-	public NewsChannelCommand(Tv tv, SetTopBox sbox, SoundSystem ss, VGame vgame) {
-		super(tv,sbox,ss,vgame);
+
+class OrangeJuice extends Command {
+	Orange orange;Sugar sugar;
+	public OrangeJuice(Orange orange,Sugar sugar) {
+		this.orange=orange;
+		this.sugar=sugar;
 	}
+
 	@Override
 	public void execute() {
-		System.out.println("the news channel process started...");
-		tv.av1();
-		sbox.newChannel();
-		ss.increaseVolume();		
-		System.out.println("enjoy the news channel....");
+		orange.addOrange();
+		sugar.addSugar(4);
+		System.out.println("Enjoy your orange juice");
 	}
 }
-class SerialChannelCommand extends Command{
-	public SerialChannelCommand(Tv tv, SetTopBox sbox, SoundSystem ss, VGame vgame) {
-		super(tv,sbox,ss,vgame);
+
+class GrapeJuice extends Command {
+	Grapes grape;Milk milk;Sugar sugar;
+	public GrapeJuice(Grapes grape,Milk milk,Sugar sugar) {
+		this.grape=grape;
+		this.milk=milk;
+		this.sugar=sugar;
 	}
+
 	@Override
 	public void execute() {
-		System.out.println("the serial channel process started...");
-		tv.av1();
-		sbox.serialChannel();
-		ss.increaseVolume();		
-		System.out.println("enjoy the saas bahu serial channel....");
+		grape.addGrapes();
+		milk.addHalfCupMilk();
+		sugar.addSugar(2);
+		System.out.println("Enjoy your grapes juice");
+	
 	}
 }
-class TTGameCommand extends Command{
-	public TTGameCommand(Tv tv, SetTopBox sbox, SoundSystem ss, VGame vgame) {
-		super(tv,sbox,ss,vgame);
+class LemonJuice extends Command {
+	Lemon lemon;Sugar sugar;
+	public LemonJuice(Lemon lemon,Sugar sugar) {
+		this.lemon=lemon;
+		this.sugar=sugar;
+		
 	}
+
 	@Override
 	public void execute() {
-		System.out.println("the ttgame process started...");
-		tv.av2();
-		vgame.ttgame();
-		ss.decreaseVolume();		
-		System.out.println("enjoy the tt game....");
+		lemon.addlemon();
+		sugar.addSugar(5);
+		System.out.println("Enjoy your lemon juice");
+	
 	}
 }
-class Tv{
-	public void av1() {
-		System.out.println("av1 mode...");
+class RoseMilk extends Command {
+	RoseEssence rose;Milk milk;Sugar sugar;
+	public RoseMilk(RoseEssence rose,Milk milk,Sugar sugar) {
+		this.rose=rose;
+		this.milk=milk;
+		this.sugar=sugar;
+		
 	}
-	public void av2() {
-		System.out.println("av2 mode...");
-	}
-}
-class SetTopBox{
-	public void newChannel() {
-		System.out.println("news channel...");
-	}
-	public void serialChannel() {
-		System.out.println("mamiyar marumaga serial channel...");
-	}
-}
-class SoundSystem{
-	public void increaseVolume() {
-		System.out.println("volume increased...");
-	}
-	public void decreaseVolume() {
-		System.out.println("volume decreased...");
+
+	@Override
+	public void execute() {
+	rose.addRoseEssence();
+	milk.addOneCupMilk();
+	sugar.addSugar(3);
+	System.out.println("Enjoy your RoseMilk");
 	}
 }
-class VGame{
-	public void ttgame() {
-		System.out.println("tt game started...");
+class ChocolateMilk extends Command {
+	Chocolate chocolate;Milk milk;Sugar sugar;
+	public ChocolateMilk(Chocolate chocolate,Milk milk,Sugar sugar) {
+		this.chocolate=chocolate;
+		this.milk=milk;
+		this.sugar=sugar;
 	}
-	public void snooker() {
-		System.out.println("snooker game...");
+
+	@Override
+	public void execute() {
+		chocolate.addChocolate();
+		milk.addOneCupMilk();
+		sugar.addSugar(4);
+		System.out.println("Enjoy your chocolate milk");
+	
+	}
+}
+class Apple{
+	
+	void addApple()
+	{
+		System.out.println("Added 2 Apple");
+	}
+	
+}
+class Orange{
+	void addOrange()
+	{
+		System.out.println("Added 2 Orange ");
+	}
+	
+}
+class Grapes{
+	void addGrapes()
+	{
+		System.out.println("Added 150 grams of grapes");
+	}
+	
+}
+class Lemon{
+	void addlemon()
+	{
+		System.out.println("squeezed 1/2 lemon");
+	}
+	
+}
+class RoseEssence{
+	void addRoseEssence()
+	{
+		System.out.println("Added 5 drops of rose essence");
+	}
+	
+}
+class Chocolate{
+	void addChocolate()
+	{
+		System.out.println("Added 10 chocolate");
+	}
+	
+}
+class Milk{
+	void addHalfCupMilk()
+	{
+		System.out.println("Added Half cup of milk");
+	}
+	void addOneCupMilk()
+	{
+		System.out.println("Added 1 cup of Milk");
+	}
+	
+}
+class Sugar{
+	void addSugar(int n)
+	{
+		System.out.println("Added "+n+" spoon of sugar");
 	}
 }
