@@ -1,5 +1,7 @@
-package Pattern;
-
+package FlyWeightPattern;
+/*
+ * 
+ * Youtubechannel is seperate class that has corresponding details togethere if channel name is same**/
 public class YoutubeVideoChannel {
 String Authorname;
 long subscribers;
