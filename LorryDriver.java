@@ -5,25 +5,41 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class LorryDriver {
-	float drivingSpeed, workingHours;
+	private double drivingSpeed, workingHours;
 
-	
-	public float getDrivingSpeed() {
+	/**
+	 * 
+	 * @return the driving speed
+	 */
+	public double getDrivingSpeed() {
 		return drivingSpeed;
 	}
-
-	public void setDrivingSpeed(float drivingSpeed) {
+ /**
+  * 
+  * @param drivingSpeed speed of a driver
+  */
+	public void setDrivingSpeed(double drivingSpeed) {
 		this.drivingSpeed = drivingSpeed;
 	}
-
-	public float getWorkingHours() {
+/**
+ * 
+ * @return working hour per day
+ */
+	public double getWorkingHours() {
 		return workingHours;
 	}
-
-	public void setWorkingHours(float workingHours) {
+/**
+ * 
+ * @param workingHours
+ */
+	public void setWorkingHours(double workingHours) {
 		this.workingHours = workingHours;
 	}
-
+/**
+ * 
+ * @param date
+ * @return true if it is leave day else false
+ */
 	public boolean checkLeaveDays(LocalDateTime date) {
 		int month = date.getMonthValue();
 		int day = date.getDayOfMonth();
